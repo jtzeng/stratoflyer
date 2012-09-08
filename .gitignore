@@ -1,0 +1,8 @@
+*.png
+*.gif
+*.jpg
+*.jpeg
+*.dll
+*.jnilib
+*.jar
+*.dylib
