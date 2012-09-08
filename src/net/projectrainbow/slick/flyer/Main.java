@@ -66,10 +66,10 @@ public class Main extends BasicGame implements Constants {
 	private Image winImage;
 	private Image loseImage;
 	
-	private List<Bullet> bullets = new ArrayList<Bullet>();
-	private List<Entity> dots = new ArrayList<Entity>();
-	private List<Star> stars = new ArrayList<Star>();
-	private List<Bullet> starBullets = new ArrayList<Bullet>();
+	private final List<Bullet> bullets = new ArrayList<Bullet>();
+	private final List<Entity> dots = new ArrayList<Entity>();
+	private final List<Star> stars = new ArrayList<Star>();
+	private final List<Bullet> starBullets = new ArrayList<Bullet>();
 	
 	private boolean canShoot = true;
 	private long score;
