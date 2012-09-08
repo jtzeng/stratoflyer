@@ -428,12 +428,6 @@ public class Main extends BasicGame implements Constants {
 				e.printStackTrace();
 			}
 		}
-		int i = Integer.MAX_VALUE;
-		int j = Integer.MAX_VALUE;
-		int sum = i + j;
-		int product = i * j;
-		System.out.println("Sum: " + sum);
-		System.out.println("Product: " + product);
 	}
 	
 	@Override
