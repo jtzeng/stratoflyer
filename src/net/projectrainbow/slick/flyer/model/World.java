@@ -16,42 +16,48 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package net.projectrainbow.slick.flyer;
+package net.projectrainbow.slick.flyer.model;
 
-import org.newdawn.slick.AppGameContainer;
-import org.newdawn.slick.SlickException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
- * Main.java
+ * World.java
  * @author justin.zeng1
  *
  */
 
-public class Main implements Constants {
+public class World {
+	
+	private static final World INSTANCE = new World();
+	
+	private final List<Bullet> bullets = new ArrayList<Bullet>();
+	private final List<Entity> dots = new ArrayList<Entity>();
+	private final List<Star> stars = new ArrayList<Star>();
+	private final List<Bullet> starBullets = new ArrayList<Bullet>();
+	
+	public List<Bullet> getBullets() {
+		return bullets;
+	}
 
-	/**
-	 * 
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		Game.setInstance(new Game(TITLE + " v[" + VERSION + "]"));
-		try {
-			/**
-			 * Initializing the game.
-			 */
-			AppGameContainer container = new AppGameContainer(Game.getInstance(), WIDTH, HEIGHT, false);
-			container.setAlwaysRender(true);
-			container.setShowFPS(false);
-			container.setTargetFrameRate(FPS_RATE);
-			container.setVSync(true);
-			
-			//container.setClearEachFrame(false);
-			
-			Game.getInstance().setGameContainer(container);
-			container.start();
-		} catch (SlickException e) {
-			e.printStackTrace();
-		}
+	public List<Entity> getDots() {
+		return dots;
+	}
+
+	public List<Star> getStars() {
+		return stars;
+	}
+
+	public List<Bullet> getStarBullets() {
+		return starBullets;
+	}
+	
+	private World() {
+		// to prevent instantiation.
+	}
+	
+	public static World getWorld() {
+		return INSTANCE;
 	}
 
 }
