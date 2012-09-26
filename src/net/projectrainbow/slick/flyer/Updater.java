@@ -45,6 +45,9 @@ public class Updater {
 			throws SlickException {
 		Input input = game.getInput();
 
+		/*
+		 * Game over/win checks.
+		 */
 		if (Game.getInstance().getPlayer().getHealth() < 1
 				&& Game.getInstance().getStage() == GameStage.GAME_PLAY) {
 			Game.getInstance().setStage(GameStage.GAME_OVER);
@@ -82,6 +85,10 @@ public class Updater {
 			}
 		}
 
+		/*
+		 * Reduce the player's health if he or she
+		 * touches the boundaries of the bullets.
+		 */
 		for (Bullet b : World.getWorld().getStarBullets()) {
 			Rectangle playerRect = new Rectangle(Game.getInstance().getPlayer()
 					.getPoint().x, Game.getInstance().getPlayer().getPoint().y,
@@ -132,7 +139,7 @@ public class Updater {
 		if (Utils.random(DOT_OCC_RATE) == 1
 				&& World.getWorld().getDots().size() < MAX_DOTS) {
 			World.getWorld().getDots()
-					.add(new Entity(new Point(Utils.random(WIDTH), HEIGHT)));
+					.add(new Entity(new Point(Utils.random(WIDTH), 0)));
 		}
 
 		/*
@@ -144,10 +151,10 @@ public class Updater {
 
 		/*
 		 * Processing dot movement.
-		 */
+		 */ 
 		for (Entity d : World.getWorld().getDots()) {
 			d.getPoint()
-					.setLocation(d.getPoint().x, d.getPoint().y - DOT_SPEED);
+					.setLocation(d.getPoint().x, d.getPoint().y + DOT_SPEED);
 		}
 		/*
 		 * Removing out of bounds dots.
@@ -161,6 +168,9 @@ public class Updater {
 			World.getWorld().getDots().remove(d);
 		}
 
+		/*
+		 * Handles shooting and bullet instantiation.
+		 */
 		if (input.isKeyDown(Input.KEY_SPACE)) {
 			if (Game.getInstance().canShoot()) {
 				World.getWorld()
@@ -176,6 +186,9 @@ public class Updater {
 			}
 		}
 
+		/*
+		 * Handles the bullet shooting of the stars.
+		 */
 		for (Star s : World.getWorld().getStars()) {
 			if (Utils.random(STAR_SHOOT_OCC) == 0) {
 				World.getWorld()

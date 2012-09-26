@@ -23,6 +23,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import net.projectrainbow.slick.flyer.model.Direction;
+import net.projectrainbow.slick.flyer.model.Entity;
 import net.projectrainbow.slick.flyer.model.Player;
 import net.projectrainbow.slick.flyer.model.Star;
 import net.projectrainbow.slick.flyer.stage.GameStage;
@@ -134,6 +135,15 @@ public class Game extends BasicGame {
 				s.setDirection(Direction.WEST);
 			}
 		}
+
+		/*
+		 * Spawning the initial dots.
+		 */
+		for (int i = 0; i < MAX_DOTS / 2; i++) {
+			World.getWorld().getDots()
+					.add(new Entity(new Point(Utils.random(WIDTH), Utils.random(HEIGHT))));
+		}
+
 	}
 
 	/**

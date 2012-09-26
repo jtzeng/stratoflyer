@@ -33,17 +33,16 @@ import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.geom.RoundedRectangle;
 
 public class Renderer {
-	
+
 	/**
-	 * The game drawing process.
-	 * Called after each update.
+	 * The game drawing process. Called after each update.
 	 */
-	public static void render(GameContainer container, Graphics g) throws SlickException {
+	public static void render(GameContainer container, Graphics g)
+			throws SlickException {
 		g.setAntiAlias(true);
-		
+
 		/*
-		 * No need to render the game
-		 * if it is game over/game win.
+		 * No need to render the game if it is game over/game win.
 		 */
 		if (Game.getInstance().getStage() == GameStage.GAME_WIN) {
 			g.drawImage(Game.getInstance().getWinImage(), 0, 0);
@@ -53,61 +52,69 @@ public class Renderer {
 			g.drawImage(Game.getInstance().getLoseImage(), 0, 0);
 			return;
 		}
-		
+
 		g.setBackground(Color.black);
-		
+
 		/*
 		 * Drawing the dots.
 		 */
 		g.setColor(Color.white);
 		for (Entity d : World.getWorld().getDots()) {
-			g.fill(new Rectangle(d.getPoint().x, d.getPoint().y, DOT_SIZE, DOT_SIZE)); 
+			g.fill(new Rectangle(d.getPoint().x, d.getPoint().y, DOT_SIZE,
+					DOT_SIZE));
 		}
-		
+
 		/*
 		 * Drawing the player.
 		 */
-		g.drawImage(Game.getInstance().getTankImage(), Game.getInstance().getPlayer().getPoint().x, Game.getInstance().getPlayer().getPoint().y);
-		
+		g.drawImage(Game.getInstance().getTankImage(), Game.getInstance()
+				.getPlayer().getPoint().x, Game.getInstance().getPlayer()
+				.getPoint().y);
+
 		/*
 		 * Drawing the stars.
 		 */
 		for (Star s : World.getWorld().getStars()) {
-			g.drawImage(Game.getInstance().getStarImage(), s.getPoint().x, s.getPoint().y);
+			g.drawImage(Game.getInstance().getStarImage(), s.getPoint().x,
+					s.getPoint().y);
 		}
-		
+
 		/*
 		 * Drawing the player's bullets.
 		 */
 		for (Bullet b : World.getWorld().getBullets()) {
 			g.setColor(b.getColor());
-			g.fill(new RoundedRectangle(b.getPoint().x, b.getPoint().y, b.getWidth(), b.getHeight(), 2));
+			g.fill(new RoundedRectangle(b.getPoint().x, b.getPoint().y, b
+					.getWidth(), b.getHeight(), 2));
 		}
-		
+
 		/*
 		 * Drawing the stars' bullets.
 		 */
 		for (Bullet b : World.getWorld().getStarBullets()) {
 			g.setColor(b.getColor());
-			g.fill(new RoundedRectangle(b.getPoint().x, b.getPoint().y, b.getWidth(), b.getHeight(), 2));
+			g.fill(new RoundedRectangle(b.getPoint().x, b.getPoint().y, b
+					.getWidth(), b.getHeight(), 2));
 		}
-		
+
 		/*
 		 * Drawing debug data.
 		 */
 		g.setColor(Color.white);
 		g.drawString("Draw Time:   " + Game.getInstance().getDrawTime(), 5, 5);
-		g.drawString("Update Time: " + Game.getInstance().getUpdateTime(), 5, 20);
-		
+		g.drawString("Update Time: " + Game.getInstance().getUpdateTime(), 5,
+				20);
+
 		/*
-		g.drawString("# of Bullets: " + bullets.size() + starBullets.size(), 5, 35);
-		g.drawString("# of Dots   : " + dots.size(), 5, 50);
-		g.drawString("# of Stars  : " + stars.size(), 5, 65);
-		*/
-		
+		 * g.drawString("# of Bullets: " + bullets.size() + starBullets.size(),
+		 * 5, 35); g.drawString("# of Dots   : " + dots.size(), 5, 50);
+		 * g.drawString("# of Stars  : " + stars.size(), 5, 65);
+		 */
+
 		g.setColor(Color.yellow);
-		g.drawString("Score: " + Game.getInstance().getScore(), 5, Math.round(0.85 * HEIGHT));
-		
+		g.drawString("Score: " + Game.getInstance().getScore(), 5,
+				Math.round(0.85 * HEIGHT));
+
 		g.setColor(Color.red);
 		g.drawString("Health: ", 5, Math.round(0.9 * HEIGHT));
 		g.setColor(Color.green);
