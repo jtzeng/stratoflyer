@@ -23,6 +23,7 @@ import net.projectrainbow.slick.flyer.model.Entity;
 import net.projectrainbow.slick.flyer.model.Star;
 import net.projectrainbow.slick.flyer.model.World;
 import net.projectrainbow.slick.flyer.stage.GameStage;
+import static net.projectrainbow.slick.flyer.Constants.*;
 
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
@@ -31,7 +32,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.geom.RoundedRectangle;
 
-public class Renderer implements Constants {
+public class Renderer {
 	
 	/**
 	 * The game drawing process.

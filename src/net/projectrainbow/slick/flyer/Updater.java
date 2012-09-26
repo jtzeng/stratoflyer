@@ -29,13 +29,14 @@ import net.projectrainbow.slick.flyer.model.Star;
 import net.projectrainbow.slick.flyer.model.World;
 import net.projectrainbow.slick.flyer.stage.GameStage;
 import net.projectrainbow.slick.flyer.util.Utils;
+import static net.projectrainbow.slick.flyer.Constants.*;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Rectangle;
 
-public class Updater implements Constants {
+public class Updater {
 
 	/**
 	 * Updates variables, etc. Called before each draw.

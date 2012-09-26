@@ -19,19 +19,16 @@
 package net.projectrainbow.slick.flyer;
 
 import java.awt.Point;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import net.projectrainbow.slick.flyer.model.Bullet;
 import net.projectrainbow.slick.flyer.model.Direction;
-import net.projectrainbow.slick.flyer.model.Entity;
 import net.projectrainbow.slick.flyer.model.Player;
 import net.projectrainbow.slick.flyer.model.Star;
 import net.projectrainbow.slick.flyer.stage.GameStage;
 import net.projectrainbow.slick.flyer.util.Utils;
 import net.projectrainbow.slick.flyer.model.World;
+import static net.projectrainbow.slick.flyer.Constants.*;
 
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.BasicGame;
@@ -39,18 +36,16 @@ import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
-import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
-import org.newdawn.slick.geom.Rectangle;
-import org.newdawn.slick.geom.RoundedRectangle;
 
 /**
  * Main.java
+ * 
  * @author Whackatre
  * 
  */
 
-public class Game extends BasicGame implements Constants {
+public class Game extends BasicGame {
 
 	/**
 	 * The game container.

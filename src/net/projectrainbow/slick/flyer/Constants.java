@@ -27,94 +27,94 @@ package net.projectrainbow.slick.flyer;
  *
  */
 
-public interface Constants {
+public class Constants {
 	/**
 	 * The title of the game.
 	 */
-	static final String TITLE = "StratoFlyer";
+	public static final String TITLE = "StratoFlyer";
 	
 	/**
 	 * The version of the game (for the title).
 	 */
-	static final String VERSION = "2.3";
+	public static final String VERSION = "2.3";
 	
 	/**
 	 * The path to the images/resources.
 	 */
-	static final String PATH = "./images/";
+	public static final String PATH = "./images/";
 	
 	/**
 	 * The FPS rate which the game runs in.
 	 */
-	static final int FPS_RATE = 60;
+	public static final int FPS_RATE = 60;
 	
 	/**
 	 * The dimensions of the game.
 	 */
-	static final int WIDTH = 512;
-	static final int HEIGHT = 512;
+	public static final int WIDTH = 512;
+	public static final int HEIGHT = 512;
 	
 	/**
 	 * The max speed of the player in pixels.
 	 */
-	static final int MAX_SPEED = 2;
+	public static final int MAX_SPEED = 2;
 	
 	/**
 	 * The maximum amount of dots at one time.
 	 */
-	static final int MAX_DOTS = 25;
+	public static final int MAX_DOTS = 25;
 	
 	/**
 	 * The frequency of dot generation.
 	 * The higher the value, the less frequent dots appear.
 	 */
-	static final int DOT_OCC_RATE = 20;
+	public static final int DOT_OCC_RATE = 20;
 	
 	/**
 	 * The speed of the dots.
 	 */
-	static final int DOT_SPEED = 1;
+	public static final int DOT_SPEED = 1;
 	
 	/**
 	 * Dot size (in pixels).
 	 */
-	static final int DOT_SIZE = 4;
+	public static final int DOT_SIZE = 4;
 	
 	/**
 	 * The speed of the bullets.
 	 */
-	static final int BULLET_SPEED = 3;
+	public static final int BULLET_SPEED = 3;
 	
 	/**
 	 * The width of the bullet.
 	 */
-	static final int BULLET_WIDTH = 8;
+	public static final int BULLET_WIDTH = 8;
 	
 	/**
 	 * The height of the bullet.
 	 */
-	static final int BULLET_HEIGHT = 16;
+	public static final int BULLET_HEIGHT = 16;
 	
 	/**
 	 * The pixel movement speed of the bad stars.
 	 */
-	static final int STAR_SPEED = 2;
+	public static final int STAR_SPEED = 2;
 	
 	/**
 	 * The interval at which the player is
 	 * allowed to shoot a bullet (in ms).
 	 */
-	static final int SHOOT_INTERVAL = 300;
+	public static final int SHOOT_INTERVAL = 300;
 	
 	/**
 	 * The player score multiplier.
 	 */
-	static final int SCORE_MULTIPLIER = 1000;
+	public static final int SCORE_MULTIPLIER = 1000;
 	
 	/**
 	 * The player's default health.
 	 */
-	static final int PLR_DEFAULT_HEALTH = 10;
+	public static final int PLR_DEFAULT_HEALTH = 10;
 	
 	/**
 	 * The occurance at which the stars
@@ -122,9 +122,9 @@ public interface Constants {
 	 * higher the number, the less frequently
 	 * the star will decide to shoot.
 	 */
-	static final int STAR_SHOOT_OCC = 1000;
+	public static final int STAR_SHOOT_OCC = 1000;
 	
-	static final int STAR_DIST_X = 25;
+	public static final int STAR_DIST_X = 25;
 	
-	static final int STAR_DIST_Y = 15;
+	public static final int STAR_DIST_Y = 15;
 }

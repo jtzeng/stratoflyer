@@ -18,6 +18,8 @@
 
 package net.projectrainbow.slick.flyer;
 
+import static net.projectrainbow.slick.flyer.Constants.*;
+
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.SlickException;
 
@@ -27,7 +29,7 @@ import org.newdawn.slick.SlickException;
  *
  */
 
-public class Main implements Constants {
+public class Main {
 
 	/**
 	 * 
