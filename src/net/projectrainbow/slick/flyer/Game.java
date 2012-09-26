@@ -51,32 +51,32 @@ import org.newdawn.slick.geom.RoundedRectangle;
  */
 
 public class Game extends BasicGame implements Constants {
-	
+
 	/**
 	 * The game container.
 	 */
 	private AppGameContainer container;
-	
+
 	private GameStage stage;
-	
+
 	private long updateTime = 0;
 	private long drawTime = 0;
-	
+
 	private Player plr;
 	private Image tankImage;
 	private Image starImage;
 	private Image winImage;
 	private Image loseImage;
-	
+
 	private boolean canShoot = true;
 	private long score;
-	
+
 	private static Game game;
-	
+
 	public static Game getInstance() {
 		return game;
 	}
-	
+
 	public static void setInstance(Game game) {
 		Game.game = game;
 	}
@@ -89,43 +89,46 @@ public class Game extends BasicGame implements Constants {
 		super(title);
 		new Timer().schedule(new PlayerShootTimer(), 0, SHOOT_INTERVAL);
 	}
-	
+
 	/**
-	 * Ran at the start of the game.
-	 * Events such as loading, etc. goes here.
+	 * Ran at the start of the game. Events such as loading, etc. goes here.
 	 */
 	@Override
 	public void init(GameContainer container) throws SlickException {
-		/*random(WIDTH), random(HEIGHT)*/
-		
+		/* random(WIDTH), random(HEIGHT) */
+
 		World.getWorld().getDots().clear();
 		World.getWorld().getStars().clear();
 		World.getWorld().getBullets().clear();
 		World.getWorld().getStarBullets().clear();
-		
+
 		if (tankImage == null) {
 			tankImage = new Image(PATH + "notsoenemyplane.gif");
 			starImage = new Image(PATH + "Star_Ouro.gif").getScaledCopy(0.025f);
 			winImage = new Image(PATH + "YOU WIN.png");
 			loseImage = new Image(PATH + "YOU LOSE.png").getScaledCopy(0.5f);
 		}
-		
-		plr = new Player(new Point((int) (WIDTH * 0.5), (int) (HEIGHT * 0.8)), tankImage.getWidth(), tankImage.getHeight(), Color.white);
 
-		
+		plr = new Player(new Point((int) (WIDTH * 0.5), (int) (HEIGHT * 0.8)),
+				tankImage.getWidth(), tankImage.getHeight(), Color.white);
+
 		stage = GameStage.GAME_PLAY;
-		
+
 		/*
 		 * Spawning the stars.
 		 */
-		for (int x = 25; x < WIDTH - 25; x++) {
-			for (int y = 25; y < (HEIGHT * 0.4f); y++) {
-				if (x % (Utils.random(15) + 15) == 0 && y % (Utils.random(15) + 15) == 0) {
-					World.getWorld().getStars().add(new Star(new Point(x, y), starImage.getWidth(), starImage.getHeight()));
+		for (int x = STAR_DIST_X; x < WIDTH - STAR_DIST_X; x++) {
+			for (int y = STAR_DIST_X; y < (HEIGHT * 0.4f); y++) {
+				if (x % (Utils.random(STAR_DIST_Y) + STAR_DIST_Y) == 0
+						&& y % (Utils.random(STAR_DIST_Y) + STAR_DIST_Y) == 0) {
+					World.getWorld()
+							.getStars()
+							.add(new Star(new Point(x, y),
+									starImage.getWidth(), starImage.getHeight()));
 				}
 			}
 		}
-		
+
 		/*
 		 * Initiating default direction of the stars.
 		 */
@@ -139,19 +142,18 @@ public class Game extends BasicGame implements Constants {
 	}
 
 	/**
-	 * The game drawing process.
-	 * Called after each update.
+	 * The game drawing process. Called after each update.
 	 */
 	@Override
-	public void render(GameContainer container, Graphics g) throws SlickException {
+	public void render(GameContainer container, Graphics g)
+			throws SlickException {
 		long initTime = container.getTime();
 		Renderer.render(container, g);
 		drawTime = container.getTime() - initTime;
 	}
 
 	/**
-	 * Updates variables, etc.
-	 * Called before each draw.
+	 * Updates variables, etc. Called before each draw.
 	 */
 	@Override
 	public void update(GameContainer game, int arg1) throws SlickException {
@@ -159,10 +161,10 @@ public class Game extends BasicGame implements Constants {
 		Updater.update(game, arg1);
 		updateTime = container.getTime() - initTime;
 	}
-	
+
 	@Override
 	public void mouseClicked(int button, int x, int y, int clickCount) {
-		//stars.add(new Star(new Point(x, y), 50, 50));
+		// stars.add(new Star(new Point(x, y), 50, 50));
 		if (stage == GameStage.GAME_OVER || stage == GameStage.GAME_WIN) {
 			try {
 				container.reinit();
@@ -171,34 +173,17 @@ public class Game extends BasicGame implements Constants {
 			}
 		}
 	}
-	
+
 	@Override
 	public void keyPressed(int key, char c) {
 	}
-	
+
 	public AppGameContainer getContainer() {
 		return container;
 	}
-	
+
 	public void setGameContainer(AppGameContainer container) {
 		this.container = container;
-	}
-	
-	/**
-	 * A process called every X seconds.
-	 */
-	class PlayerShootTimer extends TimerTask {
-		
-		public PlayerShootTimer() {
-			super();
-		}
-
-		@Override
-		public void run() {
-			canShoot = true;
-			return;
-		}
-		
 	}
 
 	public GameStage getStage() {
@@ -275,6 +260,23 @@ public class Game extends BasicGame implements Constants {
 
 	public Player getPlayer() {
 		return plr;
+	}
+
+	/**
+	 * A process called every X seconds.
+	 */
+	class PlayerShootTimer extends TimerTask {
+
+		public PlayerShootTimer() {
+			super();
+		}
+
+		@Override
+		public void run() {
+			canShoot = true;
+			return;
+		}
+
 	}
 
 }

@@ -123,4 +123,8 @@ public interface Constants {
 	 * the star will decide to shoot.
 	 */
 	static final int STAR_SHOOT_OCC = 1000;
+	
+	static final int STAR_DIST_X = 25;
+	
+	static final int STAR_DIST_Y = 15;
 }

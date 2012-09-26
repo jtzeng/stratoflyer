@@ -36,97 +36,117 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Rectangle;
 
 public class Updater implements Constants {
-	
+
 	/**
-	 * Updates variables, etc.
-	 * Called before each draw.
+	 * Updates variables, etc. Called before each draw.
 	 */
-	public static void update(GameContainer game, int arg1) throws SlickException {
+	public static void update(GameContainer game, int arg1)
+			throws SlickException {
 		Input input = game.getInput();
-		
-		if (Game.getInstance().getPlayer().getHealth() < 1 && Game.getInstance().getStage() == GameStage.GAME_PLAY) {
+
+		if (Game.getInstance().getPlayer().getHealth() < 1
+				&& Game.getInstance().getStage() == GameStage.GAME_PLAY) {
 			Game.getInstance().setStage(GameStage.GAME_OVER);
 		}
-		if (World.getWorld().getStars().size() < 1 && Game.getInstance().getStage() == GameStage.GAME_PLAY) {
+		if (World.getWorld().getStars().size() < 1
+				&& Game.getInstance().getStage() == GameStage.GAME_PLAY) {
 			Game.getInstance().setStage(GameStage.GAME_WIN);
 		}
-		
-		if (Game.getInstance().getStage() == GameStage.GAME_OVER || Game.getInstance().getStage() == GameStage.GAME_WIN) {
+
+		if (Game.getInstance().getStage() == GameStage.GAME_OVER
+				|| Game.getInstance().getStage() == GameStage.GAME_WIN) {
 			return;
 		}
-		
+
 		List<Entity> dotsToRemove = new ArrayList<Entity>();
 		List<Bullet> bulletsToRemove = new ArrayList<Bullet>();
 		List<Star> starsToRemove = new ArrayList<Star>();
 		List<Bullet> starBulletsToRemove = new ArrayList<Bullet>();
-		
+
 		/*
-		 * Removes all stars that touch
-		 * the bullets.
+		 * Removes all stars that touch the bullets.
 		 */
 		for (Bullet b : World.getWorld().getBullets()) {
 			for (Star s : World.getWorld().getStars()) {
-				Rectangle starRect = new Rectangle(s.getPoint().x, s.getPoint().y, s.getWidth(), s.getHeight());
-				Rectangle bulletRect = new Rectangle(b.getPoint().x, b.getPoint().y, b.getWidth(), b.getHeight());
+				Rectangle starRect = new Rectangle(s.getPoint().x,
+						s.getPoint().y, s.getWidth(), s.getHeight());
+				Rectangle bulletRect = new Rectangle(b.getPoint().x,
+						b.getPoint().y, b.getWidth(), b.getHeight());
 				if (starRect.intersects(bulletRect)) {
 					starsToRemove.add(s);
 					bulletsToRemove.add(b);
-					Game.getInstance().setScore(Game.getInstance().getScore() + SCORE_MULTIPLIER);
+					Game.getInstance().setScore(
+							Game.getInstance().getScore() + SCORE_MULTIPLIER);
 				}
 			}
 		}
-		
+
 		for (Bullet b : World.getWorld().getStarBullets()) {
-			Rectangle playerRect = new Rectangle(Game.getInstance().getPlayer().getPoint().x, Game.getInstance().getPlayer().getPoint().y, Game.getInstance().getPlayer().getWidth(), Game.getInstance().getPlayer().getHeight());
-			Rectangle bulletRect = new Rectangle(b.getPoint().x, b.getPoint().y, b.getWidth(), b.getHeight());
+			Rectangle playerRect = new Rectangle(Game.getInstance().getPlayer()
+					.getPoint().x, Game.getInstance().getPlayer().getPoint().y,
+					Game.getInstance().getPlayer().getWidth(), Game
+							.getInstance().getPlayer().getHeight());
+			Rectangle bulletRect = new Rectangle(b.getPoint().x,
+					b.getPoint().y, b.getWidth(), b.getHeight());
 			if (playerRect.intersects(bulletRect)) {
 				starBulletsToRemove.add(b);
-				Game.getInstance().getPlayer().setHealth(Game.getInstance().getPlayer().getHealth() - 1);
+				Game.getInstance()
+						.getPlayer()
+						.setHealth(
+								Game.getInstance().getPlayer().getHealth() - 1);
 				/* score -= SCORE_MULTIPLIER; */
 			}
 		}
-		
+
 		/**
-		 * Processing player movement
-		 * if arrow keys are pressed.
+		 * Processing player movement if arrow keys are pressed.
 		 * 
 		 * TODO: Move to keyPressed??
 		 */
 		if (input.isKeyDown(Input.KEY_LEFT)) {
 			if (Game.getInstance().getPlayer().getPoint().x > 0)
-				Game.getInstance().getPlayer().getPoint().setLocation(Game.getInstance().getPlayer().getPoint().x - MAX_SPEED, Game.getInstance().getPlayer().getPoint().y);
+				Game.getInstance()
+						.getPlayer()
+						.getPoint()
+						.setLocation(
+								Game.getInstance().getPlayer().getPoint().x
+										- MAX_SPEED,
+								Game.getInstance().getPlayer().getPoint().y);
 		}
 		if (input.isKeyDown(Input.KEY_RIGHT)) {
-			if (Game.getInstance().getPlayer().getPoint().x < WIDTH - Game.getInstance().getTankImage().getWidth())
-				Game.getInstance().getPlayer().getPoint().setLocation(Game.getInstance().getPlayer().getPoint().x + MAX_SPEED, Game.getInstance().getPlayer().getPoint().y);
+			if (Game.getInstance().getPlayer().getPoint().x < WIDTH
+					- Game.getInstance().getTankImage().getWidth())
+				Game.getInstance()
+						.getPlayer()
+						.getPoint()
+						.setLocation(
+								Game.getInstance().getPlayer().getPoint().x
+										+ MAX_SPEED,
+								Game.getInstance().getPlayer().getPoint().y);
 		}
+
 		/*
-		if (input.isKeyDown(Input.KEY_UP)) {
-			if (plr.getPoint().y > 0)
-				plr.getPoint().setLocation(plr.getPoint().x, plr.getPoint().y - MAX_SPEED);
+		 * Adds new dots, if any.
+		 */
+		if (Utils.random(DOT_OCC_RATE) == 1
+				&& World.getWorld().getDots().size() < MAX_DOTS) {
+			World.getWorld().getDots()
+					.add(new Entity(new Point(Utils.random(WIDTH), HEIGHT)));
 		}
-		if (input.isKeyDown(Input.KEY_DOWN)) {
-			if (plr.getPoint().y < Game.HEIGHT)
-				plr.getPoint().setLocation(plr.getPoint().x, plr.getPoint().y + MAX_SPEED);
-		}
-		*/
-		
-		if (Utils.random(DOT_OCC_RATE) == 1 && World.getWorld().getDots().size() < MAX_DOTS) {
-			World.getWorld().getDots().add(new Entity(new Point(Utils.random(WIDTH), HEIGHT)));
-		}
-		
+
 		/*
 		 * Removing the "dead" stars.
 		 */
 		for (Star s : starsToRemove) {
 			World.getWorld().getStars().remove(s);
 		}
-		
+
 		/*
 		 * Processing dot movement.
 		 */
 		for (Entity d : World.getWorld().getDots()) {
-			d.getPoint().setLocation(d.getPoint().x, d.getPoint().y - DOT_SPEED);
+			d.getPoint()
+					.setLocation(d.getPoint().x, d.getPoint().y - DOT_SPEED);
 		}
 		/*
 		 * Removing out of bounds dots.
@@ -139,35 +159,50 @@ public class Updater implements Constants {
 		for (Entity d : dotsToRemove) {
 			World.getWorld().getDots().remove(d);
 		}
-		
+
 		if (input.isKeyDown(Input.KEY_SPACE)) {
 			if (Game.getInstance().canShoot()) {
-				World.getWorld().getBullets().add(new Bullet(new Point(Game.getInstance().getPlayer().getPoint().x + Math.round(Game.getInstance().getTankImage().getWidth() * 0.42f), Game.getInstance().getPlayer().getPoint().y - 5), BULLET_WIDTH, BULLET_HEIGHT, Utils.getRandomColor()));
+				World.getWorld()
+						.getBullets()
+						.add(new Bullet(new Point(Game.getInstance()
+								.getPlayer().getPoint().x
+								+ Math.round(Game.getInstance().getTankImage()
+										.getWidth() * 0.42f), Game
+								.getInstance().getPlayer().getPoint().y - 5),
+								BULLET_WIDTH, BULLET_HEIGHT, Utils
+										.getRandomColor()));
 				Game.getInstance().setCanShoot(false);
 			}
 		}
-		
+
 		for (Star s : World.getWorld().getStars()) {
 			if (Utils.random(STAR_SHOOT_OCC) == 0) {
-				World.getWorld().getStarBullets().add(new Bullet(new Point(s.getPoint().x + Math.round(Game.getInstance().getStarImage().getWidth() * 0.40f), s.getPoint().y - 5), BULLET_WIDTH, BULLET_HEIGHT, Utils.getRandomColor()));
+				World.getWorld()
+						.getStarBullets()
+						.add(new Bullet(new Point(s.getPoint().x
+								+ Math.round(Game.getInstance().getStarImage()
+										.getWidth() * 0.40f),
+								s.getPoint().y - 5), BULLET_WIDTH,
+								BULLET_HEIGHT, Utils.getRandomColor()));
 			}
 		}
-		
-		
+
 		/*
 		 * Processing bullet movement.
 		 */
 		for (Bullet b : World.getWorld().getBullets()) {
-			b.getPoint().setLocation(b.getPoint().x, b.getPoint().y - BULLET_SPEED);
+			b.getPoint().setLocation(b.getPoint().x,
+					b.getPoint().y - BULLET_SPEED);
 		}
-		
+
 		/*
 		 * Processing star bullet movement.
 		 */
 		for (Bullet b : World.getWorld().getStarBullets()) {
-			b.getPoint().setLocation(b.getPoint().x, b.getPoint().y - BULLET_SPEED * -1);
+			b.getPoint().setLocation(b.getPoint().x,
+					b.getPoint().y - BULLET_SPEED * -1);
 		}
-		
+
 		/*
 		 * Removing out of bounds bullets.
 		 */
@@ -179,7 +214,7 @@ public class Updater implements Constants {
 		for (Bullet b : bulletsToRemove) {
 			World.getWorld().getBullets().remove(b);
 		}
-		
+
 		/*
 		 * Removing out of bounds star bullets.
 		 */
@@ -191,7 +226,7 @@ public class Updater implements Constants {
 		for (Bullet b : starBulletsToRemove) {
 			World.getWorld().getStarBullets().remove(b);
 		}
-		
+
 		/*
 		 * Processing direction movement of stars.
 		 */
@@ -200,11 +235,16 @@ public class Updater implements Constants {
 				s.setDirection(Direction.EAST);
 				s.getPoint().setLocation(1, s.getPoint().y);
 			}
-			if (s.getPoint().x > WIDTH - Game.getInstance().getStarImage().getWidth()) {
+			if (s.getPoint().x > WIDTH
+					- Game.getInstance().getStarImage().getWidth()) {
 				s.setDirection(Direction.WEST);
-				s.getPoint().setLocation(WIDTH - Game.getInstance().getStarImage().getWidth() - 1, s.getPoint().y);
+				s.getPoint().setLocation(
+						WIDTH - Game.getInstance().getStarImage().getWidth()
+								- 1, s.getPoint().y);
 			}
-			s.getPoint().setLocation(s.getPoint().x + s.getDirection().getDeltaX() * STAR_SPEED, s.getPoint().y);
+			s.getPoint().setLocation(
+					s.getPoint().x + s.getDirection().getDeltaX() * STAR_SPEED,
+					s.getPoint().y);
 		}
 	}
 
