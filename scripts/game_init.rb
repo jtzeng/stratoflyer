@@ -15,7 +15,7 @@ def spawn_stars(dist_x, dist_y, height_offset, star_img)
     (dist_y.upto(Constants::HEIGHT * 0.4)).each do |y|
       if x % (Utils::random(dist_y) + dist_y) == 0 and y % (Utils::random(dist_y) + dist_y) == 0
         World::get_world.get_stars.add(Star.new( \
-          Point.new(x, y), star_img.get_width, star_img.get_height)
+          Point.new(x, y), star_img.get_width, star_img.get_height))
       end
     end
   end
@@ -34,7 +34,7 @@ end
 
 # spawns the initial dots on the screen.
 def spawn_init_dots(amount)
-  amount.times do |i|
+  amount.times do
     World::get_world.get_dots. \
       add(Entity.new(Point.new(Utils::random( \
         Constants::WIDTH), Utils::random(Constants::HEIGHT))))
