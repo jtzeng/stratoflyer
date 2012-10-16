@@ -92,13 +92,16 @@ public class Game extends BasicGame {
 	 */
 	@Override
 	public void init(GameContainer container) throws SlickException {
-		/* random(WIDTH), random(HEIGHT) */
 
-		World.getWorld().getDots().clear();
-		World.getWorld().getStars().clear();
-		World.getWorld().getBullets().clear();
-		World.getWorld().getStarBullets().clear();
+		/*
+		 * Clears all entities in the World
+		 * except for the player.
+		 */
+		ScriptManager.executeScriptMethod("game_init.rb", "clear_all_entities");
 
+		/*
+		 * Initializes the images.
+		 */
 		if (tankImage == null) {
 			tankImage = new Image(PATH + "notsoenemyplane.gif");
 			starImage = new Image(PATH + "Star_Ouro.gif").getScaledCopy(0.025f);
@@ -106,9 +109,14 @@ public class Game extends BasicGame {
 			loseImage = new Image(PATH + "YOU LOSE.png").getScaledCopy(0.5f);
 		}
 
-		plr = new Player(new Point((int) (WIDTH * 0.5), (int) (HEIGHT * 0.8)),
-				tankImage.getWidth(), tankImage.getHeight(), Color.white);
+		/*
+		 * Initializes the player.
+		 */
+		plr = (Player) ScriptManager.executeScriptMethod("game_init.rb", "init_player", WIDTH, HEIGHT);
 
+		/*
+		 * Sets the stage.
+		 */
 		stage = GameStage.GAME_PLAY;
 
 		/*
