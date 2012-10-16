@@ -1,9 +1,10 @@
 package net.skyrealm.flyer.test;
 
-import javax.script.ScriptEngineManager;
 import javax.script.ScriptEngine;
 import javax.script.ScriptException;
 import javax.script.ScriptContext;
+
+import net.skyrealm.flyer.util.ScriptManager;
 
 public class RubyTest {
 
@@ -11,6 +12,7 @@ public class RubyTest {
 	 * @param args
 	 */
 	public static void main(String[] args) {
+		/*
 		ScriptEngineManager manager = new ScriptEngineManager();
 		ScriptEngine jRuby = manager.getEngineByName("jruby");
 		ScriptContext context = jRuby.getContext();
@@ -19,6 +21,10 @@ public class RubyTest {
 		} catch (ScriptException e) {
 			e.printStackTrace();
 		}
+		*/
+		ScriptManager.initialize();
+		ScriptManager.executeScript("test.rb");
+		ScriptManager.executeScriptMethod("test.rb", "println", "hello!");
 	}
 
 }

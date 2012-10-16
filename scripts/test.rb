@@ -22,5 +22,9 @@ class ListTest
 	end
 end
 
+def println(s)
+	puts s
+end
+
 list_test = ListTest.new
 puts list_test.init_list_sum(list_test.init_test_list)
