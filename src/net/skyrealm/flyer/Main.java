@@ -16,52 +16,44 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package net.skyrealm.flyer.model;
+package net.skyrealm.flyer;
 
-import java.awt.Point;
+import static net.skyrealm.flyer.Constants.*;
 
-
-import org.newdawn.slick.Color;
+import org.newdawn.slick.AppGameContainer;
+import org.newdawn.slick.SlickException;
 
 /**
- * Star.java
- * @author Whackatre
- * 
- * Represents an enemy star.
+ * Main.java
+ * @author justin.zeng1
  *
  */
 
-public class Star extends Entity {
+public class Main {
 
-	private int width;
-	private int height;
-	private Direction dir;
-	
 	/**
 	 * 
-	 * @param point
-	 * @param width
-	 * @param height
+	 * @param args
 	 */
-	public Star(Point point, int width, int height) {
-		super(point);
-		this.width = width;
-		this.height = height;
-	}
-	
-	public void setDirection(Direction dir) {
-		this.dir = dir;
-	}
-	
-	public Direction getDirection() {
-		return dir;
-	}
-	
-	public int getWidth() {
-		return width;
+	public static void main(String[] args) {
+		Game.setInstance(new Game(TITLE + " v[" + VERSION + "]"));
+		try {
+			/**
+			 * Initializing the game.
+			 */
+			AppGameContainer container = new AppGameContainer(Game.getInstance(), WIDTH, HEIGHT, false);
+			container.setAlwaysRender(true);
+			container.setShowFPS(false);
+			container.setTargetFrameRate(FPS_RATE);
+			container.setVSync(true);
+			
+			//container.setClearEachFrame(false);
+			
+			Game.getInstance().setGameContainer(container);
+			container.start();
+		} catch (SlickException e) {
+			e.printStackTrace();
+		}
 	}
 
-	public int getHeight() {
-		return height;
-	}
 }

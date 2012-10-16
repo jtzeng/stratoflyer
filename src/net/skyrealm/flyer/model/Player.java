@@ -16,11 +16,11 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package net.projectrainbow.slick.flyer.model;
+package net.skyrealm.flyer.model;
 
 import java.awt.Point;
 
-import net.projectrainbow.slick.flyer.Constants;
+import net.skyrealm.flyer.Constants;
 
 import org.newdawn.slick.Color;
 

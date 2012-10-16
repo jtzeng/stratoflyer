@@ -1,4 +1,4 @@
-package net.projectrainbow.slick.flyer.util;
+package net.skyrealm.flyer.util;
 
 import org.newdawn.slick.Color;
 
