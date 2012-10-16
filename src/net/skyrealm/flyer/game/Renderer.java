@@ -16,7 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package net.skyrealm.flyer;
+package net.skyrealm.flyer.game;
 
 import net.skyrealm.flyer.model.Bullet;
 import net.skyrealm.flyer.model.Entity;

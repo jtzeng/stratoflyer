@@ -20,6 +20,8 @@ package net.skyrealm.flyer;
 
 import static net.skyrealm.flyer.Constants.*;
 
+import net.skyrealm.flyer.game.Game;
+
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.SlickException;
 
