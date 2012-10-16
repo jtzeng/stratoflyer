@@ -21,6 +21,7 @@ package net.skyrealm.flyer;
 import static net.skyrealm.flyer.Constants.*;
 
 import net.skyrealm.flyer.game.Game;
+import net.skyrealm.flyer.util.ScriptManager;
 
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.SlickException;
@@ -40,6 +41,14 @@ public class Main {
 	public static void main(String[] args) {
 		Game.setInstance(new Game(TITLE + " v[" + VERSION + "]"));
 		try {
+			/**
+			 * Initializing the ScriptManager.
+			 */
+			long initTime = System.currentTimeMillis();
+			ScriptManager.initialize();
+			ScriptManager.evaluateAllScripts();
+			System.out.println("Loaded ScriptManager and evaluated all scripts in " + (System.currentTimeMillis() - initTime) + " ms.");
+			
 			/**
 			 * Initializing the game.
 			 */

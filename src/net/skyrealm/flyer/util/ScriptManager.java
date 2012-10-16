@@ -19,6 +19,7 @@
 package net.skyrealm.flyer.util;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import javax.script.Invocable;
@@ -66,20 +67,27 @@ public class ScriptManager {
 	/**
 	 * Evaluates a Ruby script.
 	 * @param path
-	 * @return
 	 */
-	public static Object executeScript(String path) {
+	public static void executeScript(String path) {
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(SCRIPT_DIRECTORY + path));
-			Object o = jRuby.eval(br);
+			jRuby.eval(br);
 			br.close();
-			return o;
 		} catch (IOException ioe) {
 			ioe.printStackTrace();
 		} catch (ScriptException se) {
 			se.printStackTrace();
 		}
-		return null;
+	}
+	
+	/**
+	 * Evaluate all scripts.
+	 */
+	public static void evaluateAllScripts() {
+		File scriptDir = new File(SCRIPT_DIRECTORY);
+		for (String s : scriptDir.list()) {
+			executeScript(s);
+		}
 	}
 	
 	/**

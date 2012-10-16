@@ -28,6 +28,7 @@ import net.skyrealm.flyer.model.Player;
 import net.skyrealm.flyer.model.Star;
 import net.skyrealm.flyer.model.World;
 import net.skyrealm.flyer.stage.GameStage;
+import net.skyrealm.flyer.util.ScriptManager;
 import net.skyrealm.flyer.util.Utils;
 import static net.skyrealm.flyer.Constants.*;
 
@@ -40,7 +41,7 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
 /**
- * Main.java
+ * Game.java
  * 
  * @author Whackatre
  * 
@@ -113,36 +114,17 @@ public class Game extends BasicGame {
 		/*
 		 * Spawning the stars.
 		 */
-		for (int x = STAR_DIST_X; x < WIDTH - STAR_DIST_X; x++) {
-			for (int y = STAR_DIST_X; y < (HEIGHT * 0.4f); y++) {
-				if (x % (Utils.random(STAR_DIST_Y) + STAR_DIST_Y) == 0
-						&& y % (Utils.random(STAR_DIST_Y) + STAR_DIST_Y) == 0) {
-					World.getWorld()
-							.getStars()
-							.add(new Star(new Point(x, y),
-									starImage.getWidth(), starImage.getHeight()));
-				}
-			}
-		}
+		ScriptManager.executeScriptMethod("game_init.rb", "spawn_stars", STAR_DIST_X, STAR_DIST_Y, 0.4f, starImage);
 
 		/*
 		 * Initiating default direction of the stars.
 		 */
-		for (Star s : World.getWorld().getStars()) {
-			if (Utils.random(1) == 1) {
-				s.setDirection(Direction.EAST);
-			} else {
-				s.setDirection(Direction.WEST);
-			}
-		}
+		ScriptManager.executeScriptMethod("game_init.rb", "set_default_star_dir");
 
 		/*
 		 * Spawning the initial dots.
 		 */
-		for (int i = 0; i < MAX_DOTS / 2; i++) {
-			World.getWorld().getDots()
-					.add(new Entity(new Point(Utils.random(WIDTH), Utils.random(HEIGHT))));
-		}
+		ScriptManager.executeScriptMethod("game_init.rb", "spawn_init_dots", MAX_DOTS / 2);
 
 	}
 
