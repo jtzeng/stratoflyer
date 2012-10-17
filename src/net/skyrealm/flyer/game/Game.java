@@ -68,21 +68,26 @@ public class Game extends BasicGame {
 	private boolean canShoot = true;
 	private long score;
 
-	private static Game game;
+	/**
+	 * The instance of this Game.
+	 */
+	private static final Game instance = new Game(TITLE + " v[" + VERSION + "]");
 
+	/**
+	 * Gets the current instance
+	 * (singleton) of this Game.
+	 * 
+	 * @return
+	 */
 	public static Game getInstance() {
-		return game;
-	}
-
-	public static void setInstance(Game game) {
-		Game.game = game;
+		return instance;
 	}
 
 	/**
 	 * 
 	 * @param title
 	 */
-	public Game(String title) {
+	private Game(String title) {
 		super(title);
 		new Timer().schedule(new PlayerShootTimer(), 0, SHOOT_INTERVAL);
 	}

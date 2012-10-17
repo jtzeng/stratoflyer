@@ -39,7 +39,6 @@ public class Main {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		Game.setInstance(new Game(TITLE + " v[" + VERSION + "]"));
 		try {
 			/**
 			 * Initializing the ScriptManager.
