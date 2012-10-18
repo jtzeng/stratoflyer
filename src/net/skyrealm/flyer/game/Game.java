@@ -107,12 +107,15 @@ public class Game extends BasicGame {
 		/*
 		 * Initializes the images.
 		 */
+		/*
 		if (tankImage == null) {
 			tankImage = new Image(PATH + "notsoenemyplane.gif");
 			starImage = new Image(PATH + "Star_Ouro.gif").getScaledCopy(0.025f);
 			winImage = new Image(PATH + "YOU WIN.png");
 			loseImage = new Image(PATH + "YOU LOSE.png").getScaledCopy(0.5f);
 		}
+		*/
+		ScriptManager.executeScriptMethod("game_init.rb", "init_images");
 
 		/*
 		 * Initializes the player.
