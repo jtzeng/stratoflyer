@@ -95,7 +95,7 @@ public class ScriptManager {
 		try {
 			Invocable inv = null;
 			BufferedReader br = new BufferedReader(new FileReader(SCRIPT_DIRECTORY + name));
-			jRuby.eval(br);
+			//jRuby.eval(br);
 			inv = (Invocable) jRuby;
 			Object o = inv.invokeFunction(method, params);
 			br.close();

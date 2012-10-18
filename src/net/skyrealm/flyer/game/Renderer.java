@@ -40,11 +40,13 @@ public class Renderer {
 	 */
 	public static void render(GameContainer container, Graphics g)
 			throws SlickException {
-		g.setAntiAlias(true);
 		
-		ScriptManager.executeFunction("render.rb", "render", container, g);
-		if (true)
-			return;
+		/* 
+		 * TOO SLOW (avg. 5-75 ms) - SCRIPT WILL NOT BE USED!
+		 * ScriptManager.executeFunction("render.rb", "render", container, g);
+		 */
+		
+		g.setAntiAlias(true);
 
 		/*
 		 * No need to render the game if it is game over/game win.

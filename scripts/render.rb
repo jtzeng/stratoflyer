@@ -15,6 +15,8 @@ java_import 'org.newdawn.slick.Graphics'
 java_import 'org.newdawn.slick.geom.Rectangle'
 java_import 'org.newdawn.slick.geom.RoundedRectangle'
 
+# NOT USED IN GAME AS OF NOW - TOO SLOW.
+
 def render(container, g)
 	# setting anti-alias.
 	g.set_anti_alias(true)
