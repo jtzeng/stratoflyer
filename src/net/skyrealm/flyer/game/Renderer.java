@@ -112,12 +112,6 @@ public class Renderer {
 		g.drawString("Update Time: " + Game.getInstance().getUpdateTime(), 5,
 				20);
 
-		/*
-		 * g.drawString("# of Bullets: " + bullets.size() + starBullets.size(),
-		 * 5, 35); g.drawString("# of Dots   : " + dots.size(), 5, 50);
-		 * g.drawString("# of Stars  : " + stars.size(), 5, 65);
-		 */
-
 		g.setColor(Color.yellow);
 		g.drawString("Score: " + Game.getInstance().getScore(), 5,
 				Math.round(0.85 * HEIGHT));

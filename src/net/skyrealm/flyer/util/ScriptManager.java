@@ -48,6 +48,8 @@ public class ScriptManager {
 	private static ScriptEngine jRuby;
 	private static ScriptContext context;
 	
+	private static BufferedReader br;
+	
 	/**
 	 * Initializes the ScriptManager.
 	 */
@@ -63,7 +65,7 @@ public class ScriptManager {
 	 */
 	public static void executeScript(String path) {
 		try {
-			BufferedReader br = new BufferedReader(new FileReader(SCRIPT_DIRECTORY + path));
+			br = new BufferedReader(new FileReader(SCRIPT_DIRECTORY + path));
 			jRuby.eval(br);
 			br.close();
 		} catch (IOException ioe) {
@@ -74,7 +76,7 @@ public class ScriptManager {
 	}
 	
 	/**
-	 * Evaluate all scripts.
+	 * Evaluates all scripts.
 	 */
 	public static void evaluateAllScripts() {
 		File scriptDir = new File(SCRIPT_DIRECTORY);
@@ -84,8 +86,8 @@ public class ScriptManager {
 	}
 	
 	/**
-	 * Evaluates and then executes a given
-	 * method or function in a Ruby script.
+	 * Executes a given function
+	 * in a Ruby script.
 	 * @param name
 	 * @param method
 	 * @param params
@@ -94,14 +96,8 @@ public class ScriptManager {
 	public static Object executeFunction(String name, String method, Object... params) {
 		try {
 			Invocable inv = null;
-			BufferedReader br = new BufferedReader(new FileReader(SCRIPT_DIRECTORY + name));
-			//jRuby.eval(br);
 			inv = (Invocable) jRuby;
-			Object o = inv.invokeFunction(method, params);
-			br.close();
-			return o;
-		} catch (IOException ioe) {
-			ioe.printStackTrace();
+			return inv.invokeFunction(method, params);
 		} catch (NoSuchMethodException nsme) {
 			nsme.printStackTrace();
 		} catch (ScriptException se) {
