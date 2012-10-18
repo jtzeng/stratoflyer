@@ -23,6 +23,7 @@ import net.skyrealm.flyer.model.Entity;
 import net.skyrealm.flyer.model.Star;
 import net.skyrealm.flyer.model.World;
 import net.skyrealm.flyer.stage.GameStage;
+import net.skyrealm.flyer.util.ScriptManager;
 import static net.skyrealm.flyer.Constants.*;
 
 import org.newdawn.slick.Color;
@@ -40,6 +41,10 @@ public class Renderer {
 	public static void render(GameContainer container, Graphics g)
 			throws SlickException {
 		g.setAntiAlias(true);
+		
+		ScriptManager.executeFunction("render.rb", "render", container, g);
+		if (true)
+			return;
 
 		/*
 		 * No need to render the game if it is game over/game win.
