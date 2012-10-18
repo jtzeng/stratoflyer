@@ -91,7 +91,7 @@ public class ScriptManager {
 	 * @param params
 	 * @return
 	 */
-	public static Object executeScriptMethod(String name, String method, Object... params) {
+	public static Object executeFunction(String name, String method, Object... params) {
 		try {
 			Invocable inv = null;
 			BufferedReader br = new BufferedReader(new FileReader(SCRIPT_DIRECTORY + name));

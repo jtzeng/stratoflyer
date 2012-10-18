@@ -102,17 +102,17 @@ public class Game extends BasicGame {
 		 * Clears all entities in the World
 		 * except for the player.
 		 */
-		ScriptManager.executeScriptMethod("game_init.rb", "clear_all_entities");
+		ScriptManager.executeFunction("game_init.rb", "clear_all_entities");
 
 		/*
 		 * Initializes the images.
 		 */
-		ScriptManager.executeScriptMethod("game_init.rb", "init_images");
+		ScriptManager.executeFunction("game_init.rb", "init_images");
 
 		/*
 		 * Initializes the player.
 		 */
-		plr = (Player) ScriptManager.executeScriptMethod("game_init.rb", "init_player", WIDTH, HEIGHT);
+		plr = (Player) ScriptManager.executeFunction("game_init.rb", "init_player", WIDTH, HEIGHT);
 
 		/*
 		 * Sets the stage.
@@ -122,17 +122,17 @@ public class Game extends BasicGame {
 		/*
 		 * Spawning the stars.
 		 */
-		ScriptManager.executeScriptMethod("game_init.rb", "spawn_stars", STAR_DIST_X, STAR_DIST_Y, 0.4f, starImage);
+		ScriptManager.executeFunction("game_init.rb", "spawn_stars", STAR_DIST_X, STAR_DIST_Y, 0.4f, starImage);
 
 		/*
 		 * Initiating default direction of the stars.
 		 */
-		ScriptManager.executeScriptMethod("game_init.rb", "set_default_star_dir");
+		ScriptManager.executeFunction("game_init.rb", "set_default_star_dir");
 
 		/*
 		 * Spawning the initial dots.
 		 */
-		ScriptManager.executeScriptMethod("game_init.rb", "spawn_init_dots", MAX_DOTS / 2);
+		ScriptManager.executeFunction("game_init.rb", "spawn_init_dots", MAX_DOTS / 2);
 
 	}
 

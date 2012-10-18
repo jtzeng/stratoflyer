@@ -24,7 +24,7 @@ public class RubyTest {
 		*/
 		ScriptManager.initialize();
 		ScriptManager.executeScript("test.rb");
-		ScriptManager.executeScriptMethod("test.rb", "println", "hello!");
+		ScriptManager.executeFunction("test.rb", "println", "hello!");
 	}
 
 }
