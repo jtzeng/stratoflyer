@@ -45,11 +45,11 @@ public class Renderer {
 		 * No need to render the game if it is game over/game win.
 		 */
 		if (Game.getInstance().getStage() == GameStage.GAME_WIN) {
-			g.drawImage(Game.getInstance().getWinImage(), 0, 0);
+			g.drawImage(Game.getInstance().winImage, 0, 0);
 			return;
 		}
 		if (Game.getInstance().getStage() == GameStage.GAME_OVER) {
-			g.drawImage(Game.getInstance().getLoseImage(), 0, 0);
+			g.drawImage(Game.getInstance().loseImage, 0, 0);
 			return;
 		}
 
@@ -67,7 +67,7 @@ public class Renderer {
 		/*
 		 * Drawing the player.
 		 */
-		g.drawImage(Game.getInstance().getTankImage(), Game.getInstance()
+		g.drawImage(Game.getInstance().tankImage, Game.getInstance()
 				.getPlayer().getPoint().x, Game.getInstance().getPlayer()
 				.getPoint().y);
 
@@ -75,7 +75,7 @@ public class Renderer {
 		 * Drawing the stars.
 		 */
 		for (Star s : World.getWorld().getStars()) {
-			g.drawImage(Game.getInstance().getStarImage(), s.getPoint().x,
+			g.drawImage(Game.getInstance().starImage, s.getPoint().x,
 					s.getPoint().y);
 		}
 

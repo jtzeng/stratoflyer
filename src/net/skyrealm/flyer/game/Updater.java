@@ -123,7 +123,7 @@ public class Updater {
 		}
 		if (input.isKeyDown(Input.KEY_RIGHT)) {
 			if (Game.getInstance().getPlayer().getPoint().x < WIDTH
-					- Game.getInstance().getTankImage().getWidth())
+					- Game.getInstance().tankImage.getWidth())
 				Game.getInstance()
 						.getPlayer()
 						.getPoint()
@@ -177,7 +177,7 @@ public class Updater {
 						.getBullets()
 						.add(new Bullet(new Point(Game.getInstance()
 								.getPlayer().getPoint().x
-								+ Math.round(Game.getInstance().getTankImage()
+								+ Math.round(Game.getInstance().tankImage
 										.getWidth() * 0.42f), Game
 								.getInstance().getPlayer().getPoint().y - 5),
 								BULLET_WIDTH, BULLET_HEIGHT, Utils
@@ -194,7 +194,7 @@ public class Updater {
 				World.getWorld()
 						.getStarBullets()
 						.add(new Bullet(new Point(s.getPoint().x
-								+ Math.round(Game.getInstance().getStarImage()
+								+ Math.round(Game.getInstance().starImage
 										.getWidth() * 0.40f),
 								s.getPoint().y - 5), BULLET_WIDTH,
 								BULLET_HEIGHT, Utils.getRandomColor()));
@@ -250,10 +250,10 @@ public class Updater {
 				s.getPoint().setLocation(1, s.getPoint().y);
 			}
 			if (s.getPoint().x > WIDTH
-					- Game.getInstance().getStarImage().getWidth()) {
+					- Game.getInstance().starImage.getWidth()) {
 				s.setDirection(Direction.WEST);
 				s.getPoint().setLocation(
-						WIDTH - Game.getInstance().getStarImage().getWidth()
+						WIDTH - Game.getInstance().starImage.getWidth()
 								- 1, s.getPoint().y);
 			}
 			s.getPoint().setLocation(

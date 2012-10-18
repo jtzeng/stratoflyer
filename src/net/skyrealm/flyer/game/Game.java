@@ -60,10 +60,10 @@ public class Game extends BasicGame {
 	private long drawTime = 0;
 
 	private Player plr;
-	private Image tankImage;
-	private Image starImage;
-	private Image winImage;
-	private Image loseImage;
+	public Image tankImage;
+	public Image starImage;
+	public Image winImage;
+	public Image loseImage;
 
 	private boolean canShoot = true;
 	private long score;
@@ -224,38 +224,6 @@ public class Game extends BasicGame {
 
 	public void setScore(long score) {
 		this.score = score;
-	}
-
-	public Image getTankImage() {
-		return tankImage;
-	}
-
-	public void setTankImage(Image tankImage) {
-		this.tankImage = tankImage;
-	}
-
-	public Image getStarImage() {
-		return starImage;
-	}
-
-	public void setStarImage(Image starImage) {
-		this.starImage = starImage;
-	}
-
-	public Image getWinImage() {
-		return winImage;
-	}
-
-	public void setWinImage(Image winImage) {
-		this.winImage = winImage;
-	}
-
-	public Image getLoseImage() {
-		return loseImage;
-	}
-
-	public void setLoseImage(Image loseImage) {
-		this.loseImage = loseImage;
 	}
 
 	public Player getPlayer() {
