@@ -34,9 +34,12 @@ import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.geom.RoundedRectangle;
 
 public class Renderer {
-
+	
 	/**
 	 * The game drawing process. Called after each update.
+	 * @param container
+	 * @param g
+	 * @throws SlickException
 	 */
 	public static void render(GameContainer container, Graphics g)
 			throws SlickException {

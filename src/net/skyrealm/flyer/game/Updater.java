@@ -28,6 +28,7 @@ import net.skyrealm.flyer.model.Entity;
 import net.skyrealm.flyer.model.Star;
 import net.skyrealm.flyer.model.World;
 import net.skyrealm.flyer.stage.GameStage;
+import net.skyrealm.flyer.util.ScriptManager;
 import net.skyrealm.flyer.util.Utils;
 import static net.skyrealm.flyer.Constants.*;
 
@@ -40,8 +41,11 @@ public class Updater {
 
 	/**
 	 * Updates variables, etc. Called before each draw.
+	 * @param container
+	 * @param delta
+	 * @throws SlickException
 	 */
-	public static void update(GameContainer container, int arg1)
+	public static void update(GameContainer container, int delta)
 			throws SlickException {
 		Input input = container.getInput();
 
@@ -106,7 +110,7 @@ public class Updater {
 			}
 		}
 
-		/**
+		/*
 		 * Processing player movement if arrow keys are pressed.
 		 * 
 		 * TODO: Move to keyPressed??
@@ -260,6 +264,9 @@ public class Updater {
 					s.getPoint().x + s.getDirection().getDeltaX() * STAR_SPEED,
 					s.getPoint().y);
 		}
+		
+		ScriptManager.executeFunction("update.rb", "update", container, delta);
+		
 	}
 
 }

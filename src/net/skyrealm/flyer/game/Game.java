@@ -97,43 +97,7 @@ public class Game extends BasicGame {
 	 */
 	@Override
 	public void init(GameContainer container) throws SlickException {
-
-		/*
-		 * Clears all entities in the World
-		 * except for the player.
-		 */
-		ScriptManager.executeFunction("game_init.rb", "clear_all_entities");
-
-		/*
-		 * Initializes the images.
-		 */
-		ScriptManager.executeFunction("game_init.rb", "init_images");
-
-		/*
-		 * Initializes the player.
-		 */
-		plr = (Player) ScriptManager.executeFunction("game_init.rb", "init_player", WIDTH, HEIGHT);
-
-		/*
-		 * Sets the stage.
-		 */
-		stage = GameStage.GAME_PLAY;
-
-		/*
-		 * Spawning the stars.
-		 */
-		ScriptManager.executeFunction("game_init.rb", "spawn_stars", STAR_DIST_X, STAR_DIST_Y, 0.4f, starImage);
-
-		/*
-		 * Initiating default direction of the stars.
-		 */
-		ScriptManager.executeFunction("game_init.rb", "set_default_star_dir");
-
-		/*
-		 * Spawning the initial dots.
-		 */
-		ScriptManager.executeFunction("game_init.rb", "spawn_init_dots", MAX_DOTS / 2);
-
+		Init.init(container);
 	}
 
 	/**
@@ -151,9 +115,9 @@ public class Game extends BasicGame {
 	 * Updates variables, etc. Called before each draw.
 	 */
 	@Override
-	public void update(GameContainer game, int arg1) throws SlickException {
+	public void update(GameContainer container, int delta) throws SlickException {
 		long initTime = container.getTime();
-		Updater.update(game, arg1);
+		Updater.update(container, delta);
 		updateTime = container.getTime() - initTime;
 	}
 
@@ -223,6 +187,10 @@ public class Game extends BasicGame {
 
 	public Player getPlayer() {
 		return plr;
+	}
+	
+	public void setPlayer(Player plr) {
+		this.plr = plr;
 	}
 
 	/**
