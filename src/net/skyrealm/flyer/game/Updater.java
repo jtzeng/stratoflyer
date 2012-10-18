@@ -41,9 +41,9 @@ public class Updater {
 	/**
 	 * Updates variables, etc. Called before each draw.
 	 */
-	public static void update(GameContainer game, int arg1)
+	public static void update(GameContainer container, int arg1)
 			throws SlickException {
-		Input input = game.getInput();
+		Input input = container.getInput();
 
 		/*
 		 * Game over/win checks.
