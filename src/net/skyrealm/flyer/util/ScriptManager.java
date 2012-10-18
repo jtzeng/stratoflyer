@@ -49,13 +49,6 @@ public class ScriptManager {
 	private static ScriptContext context;
 	
 	/**
-	 * Private constructor to prevent
-	 * instantiation (for possible confusion).
-	 */
-	private ScriptManager() {
-	}
-
-	/**
 	 * Initializes the ScriptManager.
 	 */
 	public static void initialize() {
