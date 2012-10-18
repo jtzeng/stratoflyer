@@ -14,13 +14,19 @@ java_import 'net.skyrealm.flyer.util.Utils'
 java_import 'org.newdawn.slick.Color'
 java_import 'org.newdawn.slick.Image'
 
+# image constants.
+TANK_IMAGE = "notsoenemyplane.gif"
+STAR_IMAGE = "Star_Ouro.gif"
+WIN_IMAGE = "YOU WIN.png"
+LOSE_IMAGE = "YOU LOSE.png"
+
 # initializes the images.
 def init_images
   path = Constants::PATH
-  Game::get_instance.tankImage = Image.new(path + "notsoenemyplane.gif")
-  Game::get_instance.starImage = Image.new(path + "Star_Ouro.gif").get_scaled_copy(0.025)
-  Game::get_instance.winImage = Image.new(path + "YOU WIN.png")
-  Game::get_instance.loseImage = Image.new(path + "YOU LOSE.png").get_scaled_copy(0.5)
+  Game::get_instance.tankImage = Image.new(path + TANK_IMAGE)
+  Game::get_instance.starImage = Image.new(path + STAR_IMAGE).get_scaled_copy(0.025)
+  Game::get_instance.winImage = Image.new(path + WIN_IMAGE)
+  Game::get_instance.loseImage = Image.new(path + LOSE_IMAGE).get_scaled_copy(0.5)
 end
 
 # initializes the player.
