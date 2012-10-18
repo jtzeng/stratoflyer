@@ -127,4 +127,13 @@ public class Constants {
 	public static final int STAR_DIST_X = 25;
 	
 	public static final int STAR_DIST_Y = 15;
+
+	
+	public static final String TANK_IMAGE = "notsoenemyplane.gif";
+	
+	public static final String STAR_IMAGE = "Star_Ouro.gif";
+	
+	public static final String WIN_IMAGE = "YOU WIN.png";
+	
+	public static final String LOSE_IMAGE = "YOU LOSE.png";
 }
