@@ -63,7 +63,7 @@ public class ScriptManager {
 	 * Evaluates a Ruby script.
 	 * @param path
 	 */
-	public static void executeScript(String path) {
+	public static void evaluateScript(String path) {
 		try {
 			br = new BufferedReader(new FileReader(SCRIPT_DIRECTORY + path));
 			jRuby.eval(br);
@@ -81,7 +81,7 @@ public class ScriptManager {
 	public static void evaluateAllScripts() {
 		File scriptDir = new File(SCRIPT_DIRECTORY);
 		for (String s : scriptDir.list()) {
-			executeScript(s);
+			evaluateScript(s);
 		}
 	}
 	
@@ -93,11 +93,11 @@ public class ScriptManager {
 	 * @param params
 	 * @return
 	 */
-	public static Object executeFunction(String name, String method, Object... params) {
+	public static Object executeFunction(String name, String function, Object... params) {
 		try {
 			Invocable inv = null;
 			inv = (Invocable) jRuby;
-			return inv.invokeFunction(method, params);
+			return inv.invokeFunction(function, params);
 		} catch (NoSuchMethodException nsme) {
 			nsme.printStackTrace();
 		} catch (ScriptException se) {

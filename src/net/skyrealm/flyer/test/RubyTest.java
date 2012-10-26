@@ -23,7 +23,7 @@ public class RubyTest {
 		}
 		*/
 		ScriptManager.initialize();
-		ScriptManager.executeScript("test.rb");
+		ScriptManager.evaluateScript("test.rb");
 		ScriptManager.executeFunction("test.rb", "println", "hello!");
 	}
 
