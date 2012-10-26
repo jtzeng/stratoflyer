@@ -6,3 +6,4 @@
 *.jnilib
 *.jar
 *.dylib
+.DS_Store
