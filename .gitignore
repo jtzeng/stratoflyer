@@ -1,5 +1,2 @@
-*.dll
-*.jnilib
 *.jar
-*.dylib
 .DS_Store
